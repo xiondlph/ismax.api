@@ -1,0 +1,120 @@
+{
+  "name": "ismax.api",
+  "version": "1.0.0",
+  "description": "Ismax API server",
+  "main": "app.js",
+  "scripts": {
+    "server-dev-local-db": "better-npm-run server-dev-local-db",
+    "server-dev": "better-npm-run server-dev",
+    "build": "better-npm-run compile",
+    "doc": "better-npm-run jsdoc",
+    "test": "jest",
+    "lint-staged": "lint-staged",
+    "eslint:fix": "eslint --fix",
+    "git:add": "git add"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiondlph/ismax.api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "ismax",
+    "api"
+  ],
+  "author": "ismax <shukhrat@ismax.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiondlph/ismax.api/issues"
+  },
+  "homepage": "https://github.com/xiondlph/ismax.api#readme",
+  "betterScripts": {
+    "server-dev-local-db": {
+      "command": "node cluster",
+      "env": {
+        "NODE_ENV": "development",
+        "DB_HOST": "localhost",
+        "DB_PORT": 27017,
+        "DB_AUTH": 0,
+        "DEBUG": [
+          "shareview:cluster",
+          "shareview:index",
+          "shareview:mongodb",
+          "shareview:server",
+          "shareview:http",
+          "express:*"
+        ]
+      }
+    },
+    "server-dev": {
+      "command": "node cluster",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": [
+          "ismax:cluster",
+          "ismax:index",
+          "ismax:mongodb",
+          "ismax:server",
+          "ismax:http",
+          "express:*"
+        ]
+      }
+    },
+    "compile": {
+      "command": "node ./node_modules/babel-cli/bin/babel.js . --ignore compile,node_modules,__tests__,__mocks__,app.js,babel.js,env.js --out-dir compile"
+    },
+    "jsdoc": {
+      "command": "node ./node_modules/jsdoc/jsdoc.js -c .jsdoc"
+    }
+  },
+  /*"lint-staged": {
+    "*.js": [
+      "eslint:fix",
+      "git:add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged",
+    "test"
+  ],*/
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
+  },
+  "dependencies": {
+    "babel-register": "^6.11.6",
+    "body-parser": "^1.15.2",
+    "crypto": "0.0.3",
+    "debug": "^2.2.0",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "jsonwebtoken": "^7.4.0",
+    "mongodb": "^2.2.4",
+    "nodemailer": "^4.0.0",
+    "password-generator": "^2.0.2",
+    "validator": "^5.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "better-npm-run": "0.0.10",
+    "docdash": "^0.4.0",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^6.0.0",
+    "jest": "^19.0.2",
+    "jsdoc": "^3.4.0",
+    "lint-staged": "^2.0.3",
+    "node-mocks-http": "^1.6.1",
+    "pre-commit": "^1.1.3",
+    "superagent": "^2.1.0",
+    "supertest": "^2.0.0"
+  }
+}
